@@ -13,9 +13,12 @@ export const Page = ({ children }: { children: ReactNode }) => (
   </motion.main>
 );
 
-type BtnProps = ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'soft' | 'ghost' };
+type BtnProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: 'primary' | 'light' | 'soft' | 'ghost';
+};
+
 export const Button = ({ variant = 'primary', className = '', ...p }: BtnProps) => (
-  <button className={`btn btn-${variant} ${className}`} {...p} />
+  <button className={`btn btn-${variant} ${className}`.trim()} {...p} />
 );
 
 export function CopyButton({ text, label = 'Copy Code' }: { text: string; label?: string }) {

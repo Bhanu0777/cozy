@@ -109,12 +109,12 @@ h1, h2, h3, .feature-card h3 { font-family: "Fraunces", Georgia, serif; }
   border-radius: 999px;
 }
 
-.button-light, .btn-soft {
+.button-light, .btn-light, .btn-soft {
   color: var(--plum); background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(28, 13, 22, 0.12);
   box-shadow: 0 8px 16px rgba(76, 26, 42, 0.06);
 }
-.button-light:hover, .btn-soft:hover:not(:disabled) {
+.button-light:hover, .btn-light:hover:not(:disabled), .btn-soft:hover:not(:disabled) {
   background: #fff;
   border-color: rgba(28, 13, 22, 0.18);
   box-shadow: 0 12px 22px rgba(76, 26, 42, 0.1);
@@ -680,41 +680,30 @@ h2 em { color: var(--coral); font-weight: 500; }
   position: absolute; left: 30px; bottom: 25px; color: rgba(255, 255, 255, 0.65); font-size: 45px; transform: rotate(-12deg);
 }
 
-/* ── Stories / Testimonials ─────────────────────────────────────────── */
+/* ── Shared Ritual Ideas ────────────────────────────────────────────── */
 .stories { padding: 120px 24px; text-align: center; background: linear-gradient(180deg, #fff9fa 0%, #fcecf1 100%); }
 .story-grid {
   width: min(1100px, 100%); margin: 55px auto 0;
   display: grid; grid-template-columns: 1fr 1.13fr 1fr; gap: 18px; align-items: center; text-align: left;
 }
-blockquote {
+ .story-card {
   min-height: 270px; margin: 0; padding: 30px; display: flex; flex-direction: column;
-  justify-content: space-between; border: 1px solid var(--line); border-radius: 21px; background: var(--paper);
+  justify-content: center; gap: 18px; border: 1px solid var(--line); border-radius: 21px; background: var(--paper);
 }
-blockquote > p { color: #5f5360; font-family: "Fraunces"; font-size: 16px; line-height: 1.65; }
 .story-featured {
   min-height: 330px; color: white; border: 0; background: linear-gradient(135deg, var(--plum) 0%, var(--deep-plum) 100%); box-shadow: 0 20px 40px rgba(75, 45, 82, 0.22);
 }
-.story-featured > p { color: white; font-size: 19px; }
-.quote-mark { color: #ffdfe9; font-family: "Fraunces"; font-size: 50px; line-height: 0.5; }
-blockquote footer { display: flex; align-items: center; gap: 11px; }
-.avatar-badge {
-  width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%;
-  color: white; font-size: 11px; font-weight: 700;
-}
-.avatar-badge.coral { background: var(--coral); }
-.avatar-badge.plum  { color: var(--plum); background: #eab29c; }
-.avatar-badge.gold  { background: var(--gold); }
-blockquote footer span:last-child { display: flex; flex-direction: column; }
-.story-featured footer strong { color: white; }
-blockquote footer strong { color: var(--plum); font-size: 11px; }
-blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
-.story-featured footer small { color: rgba(255, 255, 255, 0.6); }
+.story-icon { color: var(--coral); font-size: 25px; line-height: 1; }
+.story-card h3 { margin: 0; color: var(--plum); font-size: 22px; }
+.story-card p { margin: 0; color: #5f5360; font-size: 13px; line-height: 1.65; }
+.story-featured .story-icon, .story-featured h3, .story-featured p { color: white; }
 
 /* ── FAQ Section ────────────────────────────────────────────────────── */
 .faq-section {
   padding: 110px max(24px, calc((100vw - 1050px)/2));
   display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 100px; background: linear-gradient(180deg, #f9eef2 0%, #f7e5eb 100%);
 }
+.faq-section { scroll-margin-top: 28px; }
 .faq-section > div:first-child > p { margin: 35px 0 4px; color: #8a7d86; font-size: 12px; }
 .faq-section > div:first-child > a {
   color: var(--coral); font-size: 12px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px;
@@ -820,18 +809,19 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
 
 /* ── Live Room Layout & Panes ───────────────────────────────────────── */
 .room-page {
-  max-width: 1360px; margin: 0 auto; padding: 20px 24px 96px; min-height: 100vh;
+  max-width: 1400px; margin: 0 auto; padding: 18px 22px 96px; min-height: 100vh;
   position: relative; z-index: 1;
+  background: linear-gradient(180deg, rgba(248, 236, 241, 0.72) 0%, rgba(245, 228, 236, 0.94) 100%);
 }
 .room-top {
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  padding: 8px 4px 20px; flex-wrap: wrap;
+  display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  padding: 8px 4px 16px; flex-wrap: wrap;
 }
 .room-top-left { display: flex; align-items: center; gap: 16px; }
 .room-name-badge {
   display: flex; align-items: center; gap: 10px;
-  background: var(--paper); border: 1px solid var(--line);
-  border-radius: 999px; padding: 6px 16px; box-shadow: 0 4px 12px rgba(62, 41, 66, 0.05);
+  background: rgba(255, 255, 255, 0.72); border: 1px solid rgba(91, 58, 98, 0.12);
+  border-radius: 999px; padding: 8px 16px; box-shadow: 0 8px 18px rgba(62, 41, 66, 0.04);
 }
 .room-title { font-size: 1rem; font-weight: 700; color: var(--plum); font-family: "Fraunces"; }
 .room-presence-tag {
@@ -842,16 +832,19 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
 .room-top-right { display: flex; align-items: center; gap: 10px; }
 .leave-btn {
   padding: 8px 16px; font-size: 0.85rem; border-radius: 999px;
-  border: 1px solid var(--line); color: var(--muted);
+  border: 1px solid rgba(91, 58, 98, 0.12); color: var(--muted);
+  background: rgba(255, 255, 255, 0.72);
 }
 .leave-btn:hover { border-color: var(--coral); color: var(--coral); background: #fdf4f2; }
 
 /* ── Ambiance Toolbar Widget ────────────────────────────────────────── */
 .ambiance-bar {
   display: flex; align-items: center; gap: 10px;
-  background: var(--paper); border: 1px solid var(--line);
-  border-radius: 999px; padding: 5px 12px 5px 16px;
-  box-shadow: 0 4px 12px rgba(62, 41, 66, 0.05);
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.72); border: 1px solid rgba(91, 58, 98, 0.1);
+  border-radius: 999px; padding: 7px 12px 7px 16px;
+  box-shadow: 0 8px 18px rgba(62, 41, 66, 0.04);
+  max-width: 100%;
 }
 .ambiance-title {
   display: flex; align-items: center; gap: 6px;
@@ -893,32 +886,33 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
 
 .room-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.62fr) minmax(300px, 0.78fr);
   grid-template-areas:
     "room chat"
     "watch chat"
     "mood chat";
-  gap: 20px; align-items: start;
+  gap: 18px; align-items: start;
 }
 .pane-room  { grid-area: room; }
-.pane-watch { grid-area: watch; }
-.pane-mood  { grid-area: mood; }
-.pane-chat  { grid-area: chat; position: sticky; top: 16px; }
+.pane-watch { grid-area: watch; min-height: 260px; }
+.pane-mood  { grid-area: mood; min-height: 210px; }
+.pane-chat  { grid-area: chat; position: sticky; top: 16px; min-height: 760px; }
 
 .pane {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--r2); padding: 24px;
-  box-shadow: 0 12px 35px rgba(62, 41, 66, 0.06);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(91, 58, 98, 0.11);
+  border-radius: 26px; padding: 18px 18px 16px;
+  box-shadow: 0 14px 36px rgba(62, 41, 66, 0.05);
+  backdrop-filter: blur(6px);
 }
 .pane-room { background: transparent; border: none; box-shadow: none; padding: 0; }
 
 /* ── Live Scene Component ───────────────────────────────────────────── */
 .live-scene-card {
-  position: relative; width: 100%; height: clamp(280px, 42vh, 380px);
-  border-radius: var(--r2); overflow: hidden;
-  box-shadow: 0 20px 50px rgba(62, 41, 66, 0.15);
-  border: 1px solid var(--line);
+  position: relative; width: 100%; height: clamp(300px, 44vh, 420px);
+  border-radius: 28px; overflow: hidden;
+  box-shadow: 0 22px 52px rgba(62, 41, 66, 0.14);
+  border: 1px solid rgba(91, 58, 98, 0.12);
 }
 .live-scene-card .room-scene { height: 100%; }
 
@@ -926,16 +920,21 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
   position: absolute; right: 28px; bottom: 22px; z-index: 10;
   background: rgba(255, 253, 248, 0.96);
   backdrop-filter: blur(16px);
-  border: 1px solid var(--line);
-  border-radius: 18px; padding: 16px 20px; text-align: center; max-width: 250px;
-  box-shadow: 0 12px 32px rgba(62, 41, 66, 0.15);
+  border: 1px solid rgba(91, 58, 98, 0.12);
+  border-radius: 18px; padding: 16px 20px; text-align: center; max-width: 260px;
+  box-shadow: 0 14px 32px rgba(62, 41, 66, 0.14);
 }
 .scene-waiting-pill h4 { font-size: 0.92rem; color: var(--plum); margin-bottom: 4px; font-family: "Fraunces"; }
 .scene-waiting-pill p { font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; }
 .scene-waiting-pill .code { font-family: "Fraunces"; font-size: 1.2rem; letter-spacing: 3px; color: var(--coral); }
 
 /* ── Chat Component ─────────────────────────────────────────────────── */
-.chat { display: flex; flex-direction: column; height: min(720px, 86vh); }
+.chat {
+  display: flex; flex-direction: column;
+  height: min(720px, 86vh); min-height: 640px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.22);
+}
 .chat-header {
   display: flex; align-items: center; justify-content: space-between;
   padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 12px;
@@ -1051,6 +1050,7 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
 .watch-section { display: grid; gap: 14px; }
 .watch-heading-row {
   display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
 }
 .watch-heading {
   font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;
@@ -1138,8 +1138,8 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
 .mood-btn {
   display: grid; gap: 6px; justify-items: center;
   padding: 14px 6px; border-radius: 18px;
-  border: 1.5px solid var(--line);
-  background: var(--paper); color: var(--ink);
+  border: 1.5px solid rgba(91,58,98,0.12);
+  background: rgba(255,255,255,0.72); color: var(--ink);
   font: 700 0.8rem inherit; font-family: inherit;
   cursor: pointer; position: relative; transition: all 0.15s ease;
 }
@@ -1149,10 +1149,19 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
   border-color: var(--coral); background: #fdf4f2; transform: translateY(-2px);
 }
 .mood-btn.is-selected {
+  position: relative; overflow: hidden;
   background: var(--plum); border-color: var(--plum); color: white;
   box-shadow: 0 6px 18px rgba(75, 45, 82, 0.25);
 }
+.mood-btn.is-selected .mood-emoji { transform: scale(1.08); }
 .mood-btn.is-selected .mood-text { color: white; }
+.mood-selected-indicator {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
 
 /* ── Floating Squeeze Button ────────────────────────────────────────── */
 .squeeze-btn {
@@ -1253,8 +1262,9 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
   }
   .bottom-nav button[aria-current="page"] {
     color: var(--coral);
+    background: linear-gradient(180deg, rgba(253, 240, 237, 0.95), rgba(250, 231, 224, 0.9));
     border-top: 2px solid var(--coral);
-    background: #fdf0ed;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
   }
 
   .squeeze-btn { bottom: calc(84px + env(safe-area-inset-bottom)); right: 18px; padding: 12px 22px; }
@@ -1262,7 +1272,76 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
   .preset-grid { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 1060px) {
+  .room-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .room-top-left,
+  .room-top-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .room-top-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .room-name-badge {
+    flex: 1;
+    min-width: 0;
+    justify-content: space-between;
+  }
+  .room-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ambiance-bar {
+    width: 100%;
+    justify-content: space-between;
+    padding-inline: 12px 14px;
+  }
+}
+
 @media (max-width: 700px) {
+  .room-page {
+    padding: 14px 12px 150px;
+  }
+  .room-top {
+    padding: 2px 2px 12px;
+  }
+  .room-top-left,
+  .room-top-right {
+    flex-wrap: wrap;
+  }
+  .room-name-badge {
+    width: 100%;
+    justify-content: space-between;
+    padding: 9px 12px;
+  }
+  .room-title {
+    font-size: 0.9rem;
+  }
+  .room-top-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .ambiance-bar {
+    width: 100%;
+    justify-content: center;
+    padding: 9px 12px;
+    border-radius: 20px;
+  }
+  .ambiance-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pane {
+    padding: 14px 12px;
+    border-radius: 20px;
+  }
   .nav-shell {
     top: 12px; width: calc(100% - 24px); height: 58px; padding-left: 16px; border-radius: 17px;
   }
@@ -1291,7 +1370,11 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
   .thought { display: none; }
   .note-bottom { left: 20px; }
 
-  .trust-strip { overflow-x: auto; justify-content: flex-start; padding-left: 22px; }
+  .trust-strip {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px; overflow: visible; justify-content: initial; padding: 18px 22px;
+  }
+  .trust-strip span { min-width: 0; white-space: normal; }
   .intro { padding-top: 95px; }
   h2 { font-size: 38px; letter-spacing: -1.5px; }
 
@@ -1307,7 +1390,7 @@ blockquote footer small { margin-top: 3px; color: #9a8d98; font-size: 9px; }
   .stories { padding: 90px 14px; }
   .story-grid { grid-template-columns: 1fr; }
   .story-featured { order: -1; }
-  .story-grid blockquote { min-height: 240px; }
+  .story-card, .story-featured { min-height: 240px; }
 
   .faq-section { padding: 90px 22px; grid-template-columns: 1fr; gap: 50px; }
   .faq-section h2 br { display: none; }

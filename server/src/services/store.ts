@@ -16,6 +16,7 @@ const db = url && key ? createClient(url, key, { auth: { persistSession: false }
 export const persistence = db ? 'supabase' : 'memory';
 
 const rooms = new Map<string, Room>();
+const roomJoinLocks = new Map<string, Promise<void>>();
 const noVideo = (): Video => ({ videoId: null, playing: false, time: 0, updatedAt: Date.now(), by: null });
 const bg = (p: PromiseLike<{ error: unknown }>) =>
   Promise.resolve(p).then(r => { if (r.error) console.error('[db] write failed'); }).catch(() => console.error('[db] write failed'));
@@ -47,6 +48,24 @@ export async function addMember(room: Room, name: string) {
   }
   room.members.set(m.id, m);
   return { userId: m.id, token };
+}
+
+export async function joinRoom(code: string, name: string) {
+  const previous = roomJoinLocks.get(code) ?? Promise.resolve();
+  let release!: () => void;
+  const current = new Promise<void>(resolve => { release = resolve; });
+  roomJoinLocks.set(code, current);
+  await previous;
+
+  try {
+    const room = await getRoom(code);
+    if (!room) return { error: 'not_found' as const };
+    if (room.members.size >= 2) return { error: 'full' as const };
+    return { room, session: await addMember(room, name) };
+  } finally {
+    release();
+    if (roomJoinLocks.get(code) === current) roomJoinLocks.delete(code);
+  }
 }
 
 export async function getRoom(code: string): Promise<Room | null> {

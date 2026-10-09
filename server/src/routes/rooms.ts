@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { rateLimit } from '../middleware/rateLimit.js';
-import { addMember, createRoom, getRoom } from '../services/store.js';
+import { createRoom, joinRoom } from '../services/store.js';
 import { CODE_RE, cleanName } from '../services/utils.js';
 
 const router = Router();
@@ -23,11 +23,12 @@ router.post('/join', limit, async (req, res) => {
   if (!name) return res.status(400).json({ error: 'Please enter your name.' });
   if (!CODE_RE.test(code)) return res.status(404).json({ error: "We couldn't find that room. Check the code and try again." });
   try {
-    const room = await getRoom(code);
-    if (!room) return res.status(404).json({ error: "We couldn't find that room. Check the code and try again." });
-    if (room.members.size >= 2)
+    const result = await joinRoom(code, name);
+    if (result.error === 'not_found')
+      return res.status(404).json({ error: "We couldn't find that room. Check the code and try again." });
+    if (result.error === 'full')
       return res.status(409).json({ error: 'This room is already full. COZY rooms are private spaces for two.' });
-    const session = await addMember(room, name);
+    const { room, session } = result;
     res.status(201).json({ code, roomName: room.name, name, ...session });
   } catch { res.status(503).json({ error: TROUBLE }); }
 });

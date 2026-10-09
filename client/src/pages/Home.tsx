@@ -25,7 +25,7 @@ const features = [
     number: '01',
     eyebrow: 'Perfectly in sync',
     title: 'Same moment, no countdown.',
-    body: 'Press play, pause, or skip and it happens for both of you in under 50ms.',
+    body: 'Press play, pause, or seek and the room follows along in real time.',
     art: 'sync',
   },
   {
@@ -39,7 +39,7 @@ const features = [
     number: '03',
     eyebrow: 'Made for privacy',
     title: 'Just two. No audience.',
-    body: 'No accounts, no feed, no tracking. Rooms disappear when you both leave.',
+    body: 'No accounts or public profiles. Room access is limited to two seats.',
     art: 'privacy',
   },
   {
@@ -54,7 +54,7 @@ const features = [
 const faq = [
   [
     'Is COZY really private?',
-    'Yes. There are no accounts, profiles, ads, or tracking. Rooms are temporary and their links stop working after both guests leave.',
+    'There are no accounts, public profiles, or public feed. Room codes are private, but room details and messages may be stored by the deployment to provide the service. Avoid sharing sensitive information.',
   ],
   [
     'Does it work on phones?',
@@ -452,9 +452,9 @@ export default function Home() {
               <span>A</span>
             </div>
             <span>
-              Shared by <strong>12,000+ duos</strong>
+              Made for <strong>long-distance love</strong>
               <br />
-              across 48 countries
+              and close friendships
             </span>
           </div>
         </div>
@@ -477,10 +477,10 @@ export default function Home() {
           <i>◇</i>Always just two
         </span>
         <span>
-          <i>↯</i>Under 50ms sync
+          <i>↯</i>Shared playback
         </span>
         <span>
-          <i>⌁</i>Rooms vanish after
+          <i>⌁</i>Code-only access
         </span>
       </section>
 
@@ -523,7 +523,7 @@ export default function Home() {
             <em>Your place.</em>
           </h2>
           <p>
-            Create a temporary room, send the secret code, and settle in. No onboarding maze.
+            Create a private room, send the six-character code, and settle in. No onboarding maze.
             You can be together in less than a minute.
           </p>
           <div className="steps">
@@ -564,27 +564,21 @@ export default function Home() {
               <span />
               <span />
             </div>
-            <span className="invite-label">YOUR PRIVATE ROOM IS READY</span>
+            <span className="invite-label">ROOM PREVIEW</span>
             <strong>Sunday evening</strong>
             <p>Invite your favorite person</p>
             <div className="code-box">
-              <span>S N U G 4 2</span>
-              <button onClick={() => copyInvite('SNUG42')} aria-label="Copy code">
-                ▣
-              </button>
+              <span>S A M P L E</span>
             </div>
-            <button
-              className={`copy-link ${copied ? 'copied' : ''}`}
-              onClick={() => copyInvite('SNUG42')}
-            >
-              {copied ? 'Copied to clipboard' : 'Copy invite link'} <ArrowIcon />
+            <button className="copy-link" onClick={() => openRoom('create')}>
+              Create your invite <ArrowIcon />
             </button>
-            <small>Room disappears when you both leave</small>
+            <small>Share the code only with someone you trust</small>
           </div>
           <div className="paper-note">
             No account.
             <br />
-            No history.
+            No public profile.
             <br />
             <strong>Just this moment.</strong>
           </div>
@@ -593,57 +587,32 @@ export default function Home() {
       </section>
 
       <section className="stories" id="stories">
-        <div className="section-kicker">NOTES FROM THE COUCH</div>
+        <div className="section-kicker">SMALL WAYS TO FEEL CLOSE</div>
         <h2>
-          Made for the people
+          Even the quiet moments
           <br />
-          <em>you miss the most.</em>
+          <em>feel shared.</em>
         </h2>
         <div className="story-grid">
-          <blockquote>
-            <p>
-              “We leave the rain sounds on while we both study. It feels like she's at the other
-              end of the same table.”
-            </p>
-            <footer>
-              <span className="avatar-badge coral">E</span>
-              <span>
-                <strong>Elena & Priya</strong>
-                <small>London ↔ Toronto</small>
-              </span>
-            </footer>
-          </blockquote>
-          <blockquote className="story-featured">
-            <div className="quote-mark">“</div>
-            <p>
-              “Friday night is our COZY night now. We pick a Ghibli movie, make tea, and
-              somehow 800 miles feels a lot smaller.”
-            </p>
-            <footer>
-              <span className="avatar-badge plum">L</span>
-              <span>
-                <strong>Leo & Marc</strong>
-                <small>Barcelona ↔ Paris</small>
-              </span>
-            </footer>
-          </blockquote>
-          <blockquote>
-            <p>
-              “The squeeze button is silly in the best possible way. My best friend sends one
-              exactly when I need it.”
-            </p>
-            <footer>
-              <span className="avatar-badge gold">N</span>
-              <span>
-                <strong>Noor & Sami</strong>
-                <small>Dubai ↔ Melbourne</small>
-              </span>
-            </footer>
-          </blockquote>
+          <article className="story-card">
+            <span className="story-icon">⌁</span>
+            <h3>Study side by side</h3>
+            <p>Leave a soft soundscape on while you work in your own corners.</p>
+          </article>
+          <article className="story-card story-featured">
+            <span className="story-icon">♫</span>
+            <h3>Make Friday yours</h3>
+            <p>Pick a video, get comfortable, and press play together.</p>
+          </article>
+          <article className="story-card">
+            <span className="story-icon">♥</span>
+            <h3>Check in without words</h3>
+            <p>Share a mood or send a squeeze when someone crosses your mind.</p>
+          </article>
         </div>
       </section>
 
-      <section className="faq-section">
+      <section className="faq-section" id="faq">
         <div>
           <div className="section-kicker">GOOD TO KNOW</div>
           <h2>
@@ -657,11 +626,15 @@ export default function Home() {
         <div className="faq-list">
           {faq.map(([question, answer], index) => (
             <div className={`faq-item ${openFaq === index ? 'open' : ''}`} key={question}>
-              <button onClick={() => setOpenFaq(openFaq === index ? -1 : index)}>
+              <button
+                aria-expanded={openFaq === index}
+                aria-controls={`faq-answer-${index}`}
+                onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
+              >
                 <span>{question}</span>
                 <i>{openFaq === index ? '−' : '+'}</i>
               </button>
-              <p>{answer}</p>
+              <p id={`faq-answer-${index}`} aria-hidden={openFaq !== index}>{answer}</p>
             </div>
           ))}
         </div>
@@ -690,17 +663,23 @@ export default function Home() {
         </p>
         <div>
           <a href="#how">How it works</a>
-          <a href="#inside">Privacy</a>
+          <a href="#faq">Questions & Privacy</a>
           <a href="#stories">Stories</a>
           <a href="mailto:hello@cozy.app">Contact</a>
         </div>
-        <span>© 2025 COZY</span>
+        <span>© {new Date().getFullYear()} COZY</span>
       </footer>
 
       {/* Modal for Creating or Joining a Room */}
       {modal && (
         <div className="modal-backdrop" onMouseDown={() => setModal(null)}>
-          <div className="room-modal" onMouseDown={event => event.stopPropagation()}>
+          <div
+            className="room-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label={modal === 'create' ? 'Create a room' : 'Join a room'}
+            onMouseDown={event => event.stopPropagation()}
+          >
             <button
               className="modal-close"
               onClick={() => setModal(null)}
