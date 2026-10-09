@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="COZY logo">
+  <rect width="1024" height="1024" fill="#020202"/>
+  <g transform="translate(0 0)">
+    <path d="M490 240c-52 0-100 21-135 58-35 37-54 87-54 140 0 74 36 157 91 229 39 50 77 93 98 125 21-32 59-75 98-125 55-72 91-155 91-229 0-53-19-103-54-140-35-37-83-58-135-58Z" fill="#f92582" stroke="#f92582" stroke-width="26"/>
+    <path d="M471 352c-27-1-50 21-50 48 0 23 18 42 41 46l8 2 14 6 14-6 8-2c23-4 41-23 41-46 0-27-23-49-50-48Z" fill="#ffafc7" opacity="0.28"/>
+    <path d="M512 172l34 90h-68l34-90Z" fill="#f92582"/>
+    <path d="M300 256h424v104H300z" fill="#f92582"/>
+    <path d="M576 366h132v264H576z" fill="#f5d6e4" opacity="0.95"/>
+    <path d="M300 366h132v264H300z" fill="#f5d6e4" opacity="0.95"/>
+    <path d="M382 366h132v264H382z" fill="#f5d6e4" opacity="0.95"/>
+    <path d="M477 912c-70-148-166-224-254-225-10 0-18 8-18 18v19c0 38 27 72 65 81l130 36 77 17V912Z" fill="#f92582"/>
+    <path d="M615 912c70-148 166-224 254-225 10 0 18 8 18 18v19c0 38-27 72-65 81l-130 36-77 17V912Z" fill="#f92582"/>
+    <path d="M413 407H611v164H413z" fill="#f92582"/>
+    <path d="M457 452H567V596H457z" fill="#f5d6e4" opacity="0.95"/>
+    <path d="M403 402l72-46 72 46" fill="none" stroke="#f5d6e4" stroke-width="19" stroke-linecap="round"/>
+    <path d="M405 589l87 87 87-87" fill="none" stroke="#f5d6e4" stroke-width="19" stroke-linecap="round"/>
+    <path d="M455 423V577" fill="none" stroke="#f5d6e4" stroke-width="19" stroke-linecap="round"/>
+    <path d="M569 423V577" fill="none" stroke="#f5d6e4" stroke-width="19" stroke-linecap="round"/>
+  </g>
+</svg>
